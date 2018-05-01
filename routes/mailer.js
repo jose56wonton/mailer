@@ -5,7 +5,7 @@ const sendgrid  = require('../utils/sendgrid');
 const messageReg = new RegExp("^[a-zA-Z.,!? ]*$");
 const emailReg = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
 
-router.route("/mail/:apikey").post((req, res) => {   
+router.route("/:apikey").post((req, res) => {   
 
 
   if(req.params.apikey !== process.env.JOSHUA_WOOTONN_API_KEY)
@@ -40,5 +40,6 @@ router.route("/mail/:apikey").post((req, res) => {
     
 
 });
+router.route("/").get((req, res) => res.status(200).send({message: "This is the Mailer api using sendgrid. Post with api key as a param, and a to,from,message, and subject in the body."}))
 
 module.exports = router;
