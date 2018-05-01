@@ -5,7 +5,11 @@ const sendgrid  = require('../utils/sendgrid');
 const messageReg = new RegExp("^[a-zA-Z.,!? ]*$");
 const emailReg = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
 
-router.route("/mail").post((req, res) => {   
+router.route("/mail/:apikey").post((req, res) => {   
+
+
+  if(req.params.apikey !== process.env.JOSHUA_WOOTONN_API_KEY)
+    res.status(403).send({message: "Invalid Api Key"});
 
   const {to,from,message,subject} = req.body;
   if (!to || !emailReg.test(to))
