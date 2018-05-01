@@ -1,5 +1,5 @@
 ## Mailer
 
-This is just an api i am creating for use on any contact form for websites I create.
+This is an api I created for contact forms.
 
 It is my first experience using sendgrid/a mailing api as well as dotenv.
