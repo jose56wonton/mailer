@@ -30,6 +30,8 @@ router.route("/mail").post((req, res) => {
     // error is an instance of SendGridError
     // The full response is attached to error.response
     console.log(error.response.statusCode);
+    console.log(error.response);
+    res.status(400).send({message: "Message Error",error: error.response})
   });
     
 
