@@ -9,33 +9,33 @@ router.route("/mail/:apikey").post((req, res) => {
 
 
   if(req.params.apikey !== process.env.JOSHUA_WOOTONN_API_KEY)
-    res.status(403).send({message: "Invalid Api Key"});
+    return res.status(403).send({message: "Invalid Api Key"});
 
   const {to,from,message,subject} = req.body;
   if (!to || !emailReg.test(to))
-    res.status(400).send({ message: "Invalid To" });
+    return res.status(400).send({ message: "Invalid To" });
   if (!from || !emailReg.test(from))
-    res.status(400).send({ message: "Invalid From" });
-  if (!message || !messageReg.test(message))
-    res.status(400).send({ message: "Invalid Message" });
-  if( !subject || !messageReg.test(subject))
-    res.status(400).send({message: "Invalid Subject"})
+    return res.status(400).send({ message: "Invalid From" });
+  if (!message )
+    return res.status(400).send({ message: "Invalid Message" });
+  if( !subject )
+    return res.status(400).send({message: "Invalid Subject"})
   
   
   sendgrid(to,from,subject,message)
   .then(function (response) {
-    // console.log(response.statusCode);
-    // console.log(response.body);
-    // console.log(response.headers);
+    //  console.log(response.statusCode);
+    //  console.log(response.body);
+    //  console.log(response.headers);
     res.setHeader("Content-Type", "application/json");
     res.status(200).send({message: "Message Sent"});
   })
   .catch(function (error) {
     // error is an instance of SendGridError
     // The full response is attached to error.response
-    // console.log(error.response.statusCode);
-    // console.log(error.response);
-    res.status(400).send({message: "Message Error",error: error.response})
+     //console.log(error.response.statusCode);
+     //console.log(error.response);
+    return res.status(400).send({message: "Message Error",error: error.response})
   });
     
 
