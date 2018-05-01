@@ -20,17 +20,17 @@ router.route("/mail").post((req, res) => {
   
   sendgrid(to,from,subject,message)
   .then(function (response) {
-    console.log(response.statusCode);
-    console.log(response.body);
-    console.log(response.headers);
+    // console.log(response.statusCode);
+    // console.log(response.body);
+    // console.log(response.headers);
     res.setHeader("Content-Type", "application/json");
     res.status(200).send({message: "Message Sent"});
   })
   .catch(function (error) {
     // error is an instance of SendGridError
     // The full response is attached to error.response
-    console.log(error.response.statusCode);
-    console.log(error.response);
+    // console.log(error.response.statusCode);
+    // console.log(error.response);
     res.status(400).send({message: "Message Error",error: error.response})
   });
     
