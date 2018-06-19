@@ -1,6 +1,7 @@
-
+var cred = require('../env.js');
 var sg = require("sendgrid")(
-  process.env.SENDGRID_API_KEY
+  //process.env.SENDGRID_API_KEY
+  cred.SENDGRID_API_KEY
 );
 var helper = require("sendgrid").mail;
 
