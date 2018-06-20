@@ -7,7 +7,7 @@ app.use(cors());
 app.use(bodyParser());
 // Our handler function is passed a request and response object
 
-app.use('/',require('./routes/mailer'));
+app.use('/mailer',require('./routes/mailer'));
 
 var port = cred.PORT || 3000;
 app.listen(port , () => console.log('Mailer listening on ' + port))
