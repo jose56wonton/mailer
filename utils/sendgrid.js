@@ -1,10 +1,12 @@
-"use strict";
-
-var cred = require('../../env.js');
-var sg = require("sendgrid")(cred.SENDGRID_API_KEY);
+var cred = require('../env.js');
+var sg = require("sendgrid")(
+  //process.env.SENDGRID_API_KEY
+  cred.SENDGRID_API_KEY
+);
 var helper = require("sendgrid").mail;
 
-var send = function send(to, from, subject, message) {
+
+const send =  (to,from,subject,message) => {
   var fromEmail = new helper.Email(from);
   var toEmail = new helper.Email(to);
   var subject = subject;
@@ -18,5 +20,7 @@ var send = function send(to, from, subject, message) {
   });
 
   return sg.API(request);
-};
+}
 module.exports = send;
+
+
